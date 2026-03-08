@@ -1,130 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crazy Profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badshah UP 25 · गैंगस्टर किंग</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
+    body {
+      min-height: 100vh;
+      background: #0a0f0f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins, sans-serif;
-}
+    /* गैंगस्टर बैकग्राउंड इफेक्ट्स */
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: radial-gradient(circle at 30% 40%, #1a1f2f, #030303);
+    }
 
-body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#000000);
-background-size:400% 400%;
-animation:bg 12s ease infinite;
-perspective:1000px;
-color:white;
-}
+    /* स्मोक / मिस्ट इफेक्ट */
+    .smoke {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/smoke.png');
+      opacity: 0.15;
+      animation: drift 25s linear infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-@keyframes bg{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
+    @keyframes drift {
+      0% { background-position: 0 0; }
+      100% { background-position: 300px 300px; }
+    }
 
-/* 3D card */
+    /* ग्रंज टेक्सचर */
+    .grunge {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/grunge-wall.png');
+      opacity: 0.1;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-.card{
-width:320px;
-padding:40px;
-text-align:center;
-border-radius:25px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(15px);
-box-shadow:0 20px 60px rgba(0,0,0,0.8);
-transform-style:preserve-3d;
-transition:0.6s;
-}
+    /* एनिमेटेड गोल्डन स्पार्कल्स */
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: gold;
+      border-radius: 50%;
+      box-shadow: 0 0 15px gold, 0 0 30px #f5b81b;
+      animation: sparkleMove 8s infinite;
+      opacity: 0;
+      z-index: 0;
+    }
 
-.card:hover{
-transform:rotateY(10deg) rotateX(5deg) scale(1.05);
-}
+    @keyframes sparkleMove {
+      0% { opacity: 0; transform: translate(0, 0) scale(1); }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; transform: translate(100px, -100px) scale(2); }
+    }
 
-/* neon border */
+    /* मुख्य कार्ड - प्रीमियम गैंगस्टर स्टाइल */
+    .card {
+      max-width: 440px;
+      width: 100%;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(18px) saturate(200%);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      border-radius: 60px;
+      padding: 35px 25px 40px;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), 0 0 0 2px rgba(255, 200, 0, 0.2) inset, 0 0 50px #ffd70060;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      animation: float 6s ease-in-out infinite;
+    }
 
-.card::before{
-content:"";
-position:absolute;
-inset:-2px;
-border-radius:25px;
-background:linear-gradient(45deg,#00ffff,#ff00ff,#00ffff);
-filter:blur(8px);
-z-index:-1;
-}
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
 
-/* profile pic */
+    /* गोल्डन डबल बॉर्डर */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.5);
+      border-radius: 48px;
+      pointer-events: none;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3) inset;
+    }
 
-.pfp{
-width:130px;
-height:130px;
-border-radius:50%;
-border:3px solid cyan;
-box-shadow:0 0 25px cyan;
-margin-bottom:20px;
-transition:0.4s;
-}
+    /* OWNER बैज */
+    .owner-badge {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: #ffd966;
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: 5px;
+      padding: 8px 35px;
+      border-radius: 50px;
+      border: 2px solid #ffb347;
+      box-shadow: 0 0 30px #ffaa33, 0 5px 20px black;
+      text-transform: uppercase;
+      font-family: 'Rajdhani', sans-serif;
+      white-space: nowrap;
+      z-index: 20;
+      backdrop-filter: blur(4px);
+      text-shadow: 2px 2px 0 #00000060;
+    }
 
-.pfp:hover{
-transform:scale(1.15);
-box-shadow:0 0 50px cyan;
-}
+    /* प्रोफाइल इमेज */
+    .profile-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid gold;
+      box-shadow: 0 0 40px #ffaa00, 0 0 80px #ff8800, 0 10px 30px black;
+      margin: 30px auto 15px;
+      animation: glowPulse 3s infinite;
+    }
 
-/* name */
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 40px #ffaa00, 0 0 80px #ff8800; }
+      50% { box-shadow: 0 0 60px #ffcc33, 0 0 100px #ffaa00; }
+      100% { box-shadow: 0 0 40px #ffaa00, 0 0 80px #ff8800; }
+    }
 
-.name{
-font-size:30px;
-letter-spacing:5px;
-text-shadow:0 0 20px cyan;
-margin-bottom:25px;
-}
+    /* नाम */
+    .name {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 800;
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, #ffffff, #ffe484, #ffcc00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #ffd700, 4px 4px 0 #00000080;
+      letter-spacing: 3px;
+      line-height: 1.2;
+      margin-top: 5px;
+      text-transform: uppercase;
+    }
 
-/* button */
+    .name span {
+      font-size: 1.2rem;
+      background: none;
+      -webkit-text-fill-color: #aaa;
+      display: block;
+      letter-spacing: 8px;
+    }
 
-.btn{
-display:inline-block;
-padding:12px 28px;
-border-radius:30px;
-background:linear-gradient(45deg,#00c6ff,#0072ff);
-text-decoration:none;
-color:white;
-font-weight:bold;
-box-shadow:0 10px 30px rgba(0,0,0,0.6);
-transition:0.3s;
-}
+    /* फोन नंबर */
+    .number {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 2px #ffcc00;
+      text-shadow: 0 0 30px #ffaa00;
+      margin: 5px 0;
+      letter-spacing: 2px;
+    }
 
-.btn:hover{
-transform:translateY(-5px) scale(1.1);
-box-shadow:0 0 25px cyan;
-}
+    /* THE POWER बैज */
+    .power-badge {
+      background: linear-gradient(145deg, #1a1a1a, #000);
+      color: #ffd966;
+      font-weight: 900;
+      font-size: 1.8rem;
+      padding: 10px 30px;
+      border-radius: 60px;
+      border: 3px solid #ffb347;
+      display: inline-block;
+      margin: 20px 0 15px;
+      box-shadow: 0 0 40px #ffaa33, inset 0 0 15px #ffcc66;
+      text-transform: uppercase;
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 6px;
+      animation: powerPulse 2s infinite;
+    }
 
-</style>
+    @keyframes powerPulse {
+      0% { box-shadow: 0 0 40px #ffaa33, inset 0 0 15px #ffcc66; }
+      50% { box-shadow: 0 0 70px #ffcc33, inset 0 0 30px #ffffaa; }
+      100% { box-shadow: 0 0 40px #ffaa33, inset 0 0 15px #ffcc66; }
+    }
+
+    /* सिर्फ दो बटन - CALL और WHATSAPP */
+    .action-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin: 30px 0 20px;
+    }
+
+    .btn-call, .btn-wa {
+      padding: 16px 35px;
+      border: none;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #000;
+      color: white;
+      border: 2px solid gold;
+      box-shadow: 0 0 30px gold;
+      text-transform: uppercase;
+    }
+
+    .btn-call:hover, .btn-wa:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 60px #ffaa00;
+      background: gold;
+      color: black;
+    }
+
+    .btn-call i, .btn-wa i {
+      font-size: 1.5rem;
+    }
+
+    /* गैंगस्टर सॉन्ग बटन - सिर्फ यही एक्स्ट्रा है */
+    .music-btn {
+      background: #1a1a1a;
+      border: 2px solid gold;
+      color: gold;
+      padding: 14px 40px;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 5px 0 15px;
+      box-shadow: 0 0 30px #ffaa00;
+      text-transform: uppercase;
+    }
+
+    .music-btn:hover {
+      background: gold;
+      color: black;
+      box-shadow: 0 0 60px gold;
+    }
+
+    .music-btn i {
+      font-size: 1.6rem;
+    }
+
+    /* क्लिक हिंट */
+    .click-hint {
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      border-top: 1px solid #444;
+      padding-top: 12px;
+    }
+
+    /* रिस्पॉन्सिव */
+    @media (max-width: 450px) {
+      .name { font-size: 2.2rem; }
+      .number { font-size: 1.8rem; }
+      .power-badge { font-size: 1.4rem; letter-spacing: 3px; }
+      .action-buttons { flex-direction: column; gap: 10px; }
+      .btn-call, .btn-wa { justify-content: center; }
+    }
+  </style>
 </head>
-
 <body>
+  <!-- बैकग्राउंड लेयर्स -->
+  <div class="bg-overlay"></div>
+  <div class="smoke"></div>
+  <div class="grunge"></div>
 
-<audio autoplay>
-<source src="crazy.mp3" type="audio/mpeg">
-</audio>
+  <!-- रैंडम स्पार्कल्स -->
+  <div class="sparkle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+  <div class="sparkle" style="top: 30%; left: 80%; animation-delay: 2s;"></div>
+  <div class="sparkle" style="top: 70%; left: 15%; animation-delay: 4s;"></div>
+  <div class="sparkle" style="top: 85%; left: 70%; animation-delay: 1s;"></div>
 
-<div class="card">
+  <!-- मुख्य कार्ड -->
+  <div class="card">
+    <div class="owner-badge">O W N E R</div>
 
-<img class="pfp" src="https://i.supaimg.com/20a17276-cffe-43a3-9acb-1773af708080/458d1d29-475b-4f13-9115-89bb7a8eea24.jpg">
+    <!-- प्रोफाइल इमेज -->
+    <img class="profile-img" src="https://i.supaimg.com/20a17276-cffe-43a3-9acb-1773af708080/e3652b8f-eb93-473c-8f41-a9f927f70d4f.png" alt="Badshah UP 25">
 
-<div class="name">CRAZY</div>
+    <!-- नाम -->
+    <div class="name">BADSHAH <span>UP 25</span></div>
 
-<a class="btn" href="https://t.me/Piroskemer">JOIN TELEGRAM</a>
+    <!-- फोन नंबर -->
+    <div class="number">📞 9528941885</div>
 
-</div>
+    <!-- THE POWER बैज -->
+    <div class="power-badge">T H E  P O W E R</div>
 
+    <!-- सिर्फ दो बटन - CALL और WHATSAPP (फालतू वाले हटा दिए) -->
+    <div class="action-buttons">
+      <button class="btn-call" onclick="window.location.href='tel:9528941885'">
+        <i class="fas fa-phone-alt"></i> CALL
+      </button>
+      <button class="btn-wa" onclick="window.open('https://wa.me/919528941885', '_blank')">
+        <i class="fab fa-whatsapp"></i> WA
+      </button>
+    </div>
+
+    <!-- गैंगस्टर सॉन्ग बटन -->
+    <button class="music-btn" id="musicBtn">
+      <i class="fas fa-play" id="playIcon"></i> गैंगस्टर सॉन्ग
+    </button>
+    <div class="click-hint">⚠️ गाना बजाने के लिए बटन दबाएं</div>
+  </div>
+
+  <!-- ऑडियो - गैंगस्टर सॉन्ग -->
+  <audio id="bgMusic" loop preload="auto">
+    <!-- गैंगस्टर सॉन्ग (पंजाबी बीट) -->
+    <source src="https://cdnsongs.com/song/data/punjabi/2024/08/song/inpower.mp3" type="audio/mpeg">
+    <source src="https://cdnsongs.com/song/data/punjabi/2023/12/song/never-fold.mp3" type="audio/mpeg">
+    <source src="https://pagalfree.com/music/128/Gangster%20Sagar%20-%20Gangster%20128%20Kbps.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    (function() {
+      const music = document.getElementById('bgMusic');
+      const musicBtn = document.getElementById('musicBtn');
+      const playIcon = document.getElementById('playIcon');
+      let isPlaying = false;
+
+      musicBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (isPlaying) {
+          music.pause();
+          playIcon.className = 'fas fa-play';
+          musicBtn.style.background = '#1a1a1a';
+          musicBtn.style.color = 'gold';
+          isPlaying = false;
+        } else {
+          music.play()
+            .then(() => {
+              playIcon.className = 'fas fa-pause';
+              musicBtn.style.background = 'gold';
+              musicBtn.style.color = 'black';
+              isPlaying = true;
+            })
+            .catch(err => {
+              alert('पहले बटन दबाएं फिर गाना बजेगा');
+            });
+        }
+      });
+
+      music.addEventListener('play', () => {
+        isPlaying = true;
+        playIcon.className = 'fas fa-pause';
+        musicBtn.style.background = 'gold';
+        musicBtn.style.color = 'black';
+      });
+
+      music.addEventListener('pause', () => {
+        isPlaying = false;
+        playIcon.className = 'fas fa-play';
+        musicBtn.style.background = '#1a1a1a';
+        musicBtn.style.color = 'gold';
+      });
+
+      music.addEventListener('ended', () => {
+        isPlaying = false;
+        playIcon.className = 'fas fa-play';
+        music.currentTime = 0;
+        music.play().catch(() => {});
+      });
+    })();
+  </script>
 </body>
 </html>
